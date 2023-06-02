@@ -4,8 +4,8 @@ function Default(props) {
   const { setPromptValue } = props;
   return (
     <div>
-      <div className="text-4xl w-full text-center font-bold my-5">ChatGPT</div>
-      <div className="itemsrow flex py-4 w-[43vw] justify-around my-10">
+      <div className="text-4xl w-full text-center font-bold my-10">ChatGPT</div>
+      <div className="itemsrow flex py-4 justify-around my-6 shortcuts">
         <div className="examples flex flex-col justify-center items-center">
           <svg
             stroke="currentColor"
@@ -31,7 +31,7 @@ function Default(props) {
           </svg>
           <div className="py-4">Examples</div>
           <button
-            className="bg-gray-600 hover:bg-gray-700 px-4 py-4 my-2 mx-4 rounded-md w-[16vw] text-sm"
+            className="bg-gray-600 hover:bg-gray-700 px-4 py-4 my-2 mx-4 rounded-md w-[16rem] text-sm shortcut-text"
             onClick={() => {
               setPromptValue("Explain quantum computing in simple terms");
             }}
@@ -39,7 +39,7 @@ function Default(props) {
             "Explain quantum computing in simple terms" →
           </button>
           <button
-            className="bg-gray-600 hover:bg-gray-700 px-4 py-4 my-2 mx-4 rounded-md w-[16vw] text-sm"
+            className="bg-gray-600 hover:bg-gray-700 px-4 py-4 my-2 mx-4 rounded-md w-[16rem] text-sm shortcut-text"
             onClick={() => {
               setPromptValue(
                 "Got any creative ideas for a 10 year old’s birthday?"
@@ -49,7 +49,7 @@ function Default(props) {
             "Got any creative ideas for a 10 year old’s birthday?" →
           </button>
           <button
-            className="bg-gray-600 hover:bg-gray-700 px-4 py-4 my-2 mx-4 rounded-md w-[16vw] text-sm"
+            className="bg-gray-600 hover:bg-gray-700 px-4 py-4 my-2 mx-4 rounded-md w-[16rem] text-sm shortcut-text"
             onClick={() => {
               setPromptValue("How do I make an HTTP request in Javascript?");
             }}
@@ -74,13 +74,13 @@ function Default(props) {
             ></path>
           </svg>
           <div className="py-4">Capabilities</div>
-          <button className="bg-gray-600 px-4 py-4 my-2 cursor-default mx-4 rounded-md w-[16vw] text-sm">
+          <button className="bg-gray-600 px-4 py-4 my-2 cursor-default mx-4 rounded-md w-[16rem] text-sm shortcut-text">
             Remembers what user said earlier in the conversation
           </button>
-          <button className="bg-gray-600 px-4 py-4 my-2 cursor-default mx-4 rounded-md w-[16vw] text-sm">
+          <button className="bg-gray-600 px-4 py-4 my-2 cursor-default mx-4 rounded-md w-[16rem] text-sm shortcut-text">
             Allows user to provide follow-up corrections
           </button>
-          <button className="bg-gray-600 px-4 py-4 my-2 cursor-default mx-4 rounded-md w-[16vw] text-sm">
+          <button className="bg-gray-600 px-4 py-4 my-2 cursor-default mx-4 rounded-md w-[16rem] text-sm shortcut-text">
             Trained to decline inappropriate requests
           </button>
         </div>
@@ -102,13 +102,13 @@ function Default(props) {
             <line x1="12" y1="17" x2="12.01" y2="17"></line>
           </svg>
           <div className="py-4">Limitations</div>
-          <button className="bg-gray-600 cursor-default px-4 py-4 my-2 mx-4 rounded-md w-[16vw] text-sm">
+          <button className="bg-gray-600 cursor-default px-4 py-4 my-2 mx-4 rounded-md w-[16rem] text-sm shortcut-text">
             May occasionally generate incorrect information
           </button>
-          <button className="bg-gray-600 cursor-default px-4 py-4 my-2 mx-4 rounded-md w-[16vw] text-sm">
+          <button className="bg-gray-600 cursor-default px-4 py-4 my-2 mx-4 rounded-md w-[16rem] text-sm shortcut-text">
             May occasionally produce harmful instructions or biased content
           </button>
-          <button className="bg-gray-600 cursor-default px-4 py-4 my-2 mx-4 rounded-md w-[16vw] text-sm">
+          <button className="bg-gray-600 cursor-default px-4 py-4 my-2 mx-4 rounded-md w-[16rem] text-sm shortcut-text">
             Limited knowledge of world and events after 2021
           </button>
         </div>

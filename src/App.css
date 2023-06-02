@@ -17,3 +17,12 @@
   display: none;
 }
 
+
+@media (max-width: 909px) {
+  .shortcuts {
+    flex-direction: column;
+  }
+  .shortcut-text{
+    width: 100%;
+  }
+}

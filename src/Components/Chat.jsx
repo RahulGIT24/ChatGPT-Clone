@@ -11,11 +11,11 @@ function Chat(props) {
   return (
     <>
       <main
-        className="w-[100%] h-[70vh] flex flex-col justify-start"
+        className="w-[100%] min-h-[32rem] flex flex-col justify-start mt-10"
         id="chatElement"
       >
         <div className="w-full hover:bg-gray-700 hover:trasition duration-75 ease-in-out">
-          <div className="flex mb-5 mt-3">
+          <div className="mb-5 mt-3 flex justify-start items-center ">
             <FontAwesomeIcon
               icon={faUser}
               className="mx-10 h-[26px] py-[12px] px-[14px] rounded-full border border-white"
@@ -24,16 +24,16 @@ function Chat(props) {
           </div>
         </div>
         <div className="w-full hover:trasition duration-75 ease-in-out">
-          <div className="flex mt-3 hover:bg-gray-700  max-h-full">
+          <div className="flex mt-3 hover:bg-gray-700">
             <img
               src={gptico}
               className="h-[4.75rem] py-[12px] px-[14px] mx-7"
             />
-            <p className="text-2xl relative top-[6px] mb-10">
+            <p className="text-2xl flex justify-start items-center">
               {chatLoader ? (
                 <img src={chat} className="h-[182px] w-[11rem] my-[-69px]" />
               ) : (
-                answer
+                <p>{answer}</p>
               )}
             </p>
           </div>

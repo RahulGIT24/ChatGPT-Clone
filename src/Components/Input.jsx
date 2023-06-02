@@ -1,4 +1,5 @@
 import React from "react";
+import SendIcon from "@mui/icons-material/Send";
 
 function Input(props) {
   const {
@@ -17,48 +18,39 @@ function Input(props) {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    setChatLoader(true)
+    setChatLoader(true);
     setRenderChat(true);
     setQuestion(promptValue);
     let a = await generateText(promptValue);
     setAnswer(a);
-    setChatLoader(false)
+    setChatLoader(false);
   };
 
   return (
     <>
-      <div className="input w-full text-center ">
-        <form onSubmit={onSubmit}>
-          <input
-            type="text"
-            className="w-[50%] dark:shadow-[0_0_15px_rgba(0,0,0,0.10)] shadow-[0_0_10px_rgba(0,0,0,0.10)] p-2 bg-transparent overflow-y-hidden rounded-md outline-none"
-            placeholder="Send a message"
-            value={promptValue}
-            onChange={onChange}
-          />
-          <button
-            className="relative -left-20 p-10"
+      <div className="input text-center flex justify-center items-center flex-col">
+        <form
+          className="flex justify-center items-center flex-col"
+          onSubmit={onSubmit}
+        >
+          <div className="relative ml[-42px]">
+            <input
+              value={promptValue}
+              onChange={onChange}
+              className="dark:shadow-[0_0_15px_rgba(0,0,0,0.10)] shadow-[0_0_10px_rgba(0,0,0,0.10)] p-2 bg-transparent overflow-y-hidden rounded-md outline-none w-[28rem]"
+              placeholder="Send a message"
+              required
+            />
+            <button
+            className="absolute right-[1rem] top-[0.25rem]"
             type="submit"
             disabled={promptValue.length === 0}
           >
-            <svg
-              stroke="currentColor"
-              fill="none"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="h-4 w-4 mr-1"
-              height="1em"
-              width="1em"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <line x1="22" y1="2" x2="11" y2="13"></line>
-              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-            </svg>
+            <SendIcon />
           </button>
+          </div>
         </form>
-        <div className="text-sm">
+        <div className="text-sm text-center mt-7">
           <p className="opacity-70">
             Free Research Preview. ChatGPT may produce inaccurate information
             about people, places, or facts.
