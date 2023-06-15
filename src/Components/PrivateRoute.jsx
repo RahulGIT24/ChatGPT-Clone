@@ -2,7 +2,7 @@
 import React from "react";
 
 // Imports from react router dom
-import { Outlet, Navigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 // Importing custom hook
 import { useAuthStatus } from "../hooks/useAuthStatus";
@@ -18,8 +18,8 @@ function PrivateRoute() {
   if (checkingStatus) {
     return <Spinner />;
   }
-  // If loggedin is true then render Outlet otherwise navigate to sign in
-  return loggedin ? <Home></Home> : <Navigate to="/" />;
+  // If loggedin is true then render home otherwise navigate to Main
+  return loggedin ? <Home /> : <Navigate to="/" />;
 }
 
 export default PrivateRoute;

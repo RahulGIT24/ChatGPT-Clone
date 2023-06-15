@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
 import { useAuthStatus } from "../hooks/useAuthStatus";
 import Home from "../Pages/Home";
+import Modal from "../Components/Modal";
 
 function Login() {
   const { loggedin, checkingStatus } = useAuthStatus();
@@ -53,7 +54,7 @@ function Login() {
       if (userCredentials.user) {
         toast.success("Welcome Back!");
         setLoading(false);
-        navigate("/home");
+        navigate("/modal");
       } else {
         setLoading(false);
         toast.error("Invalid user credentials");
@@ -68,8 +69,18 @@ function Login() {
     return <Spinner />;
   }
 
-  if (loggedin === true && checkingStatus === false) {
+  if (
+    loggedin === true &&
+    checkingStatus === false &&
+    localStorage.getItem("key") != null
+  ) {
     return <Home />;
+  } else if (
+    loggedin === true &&
+    checkingStatus === false &&
+    localStorage.getItem("key") == null
+  ) {
+    return <Modal />;
   }
 
   return (
@@ -85,56 +96,54 @@ function Login() {
           Welcome Back
         </h1>
         <div className="w-[100%]">
-        <form
-          onSubmit={handleSubmit}
-        >
-          <input
-            value={email}
-            onChange={onChange}
-            id="email"
-            type="email"
-            required
-            placeholder="Email Address"
-            className="bg-bgColor mt-5  px-2 py-3  rounded-sm  outline-none inp w-full"
-          />
-
-          <div className="relative">
+          <form onSubmit={handleSubmit}>
             <input
-              value={password}
+              value={email}
               onChange={onChange}
-              type={setpassword ? "text" : "password"}
-              className="bg-bgColor mt-5  w-full px-2 py-3  rounded-sm  outline-none inp"
-              placeholder="Password"
-              id="password"
-              min={8}
+              id="email"
+              type="email"
               required
+              placeholder="Email Address"
+              className="bg-bgColor mt-5  px-2 py-3  rounded-sm  outline-none inp w-full"
             />
-            {setpassword ? (
-              <FontAwesomeIcon
-                icon={faEyeSlash}
-                className="absolute right-2 top-9 cursor-pointer text-xl "
-                onClick={handleClick}
+
+            <div className="relative">
+              <input
+                value={password}
+                onChange={onChange}
+                type={setpassword ? "text" : "password"}
+                className="bg-bgColor mt-5  w-full px-2 py-3  rounded-sm  outline-none inp"
+                placeholder="Password"
+                id="password"
+                min={8}
+                required
               />
-            ) : (
-              <FontAwesomeIcon
-                icon={faEye}
-                className=" absolute right-2 top-9 cursor-pointer text-xl"
-                onClick={handleClick}
-              />
-            )}
-          </div>
-          <div className="mt-2">
-            <p className="text-btnColor text-center">
-              <Link to={"/forgot-password"}>Forgot Password?</Link>
-            </p>
-          </div>
-          <button
-            type="submit"
-            className="mt-4 bg-btnColor hover:bg-hoverbtnColor mx-2 text-white font-semibold py-2 px-4 rounded w-full"
-          >
-            Sign in
-          </button>
-        </form>
+              {setpassword ? (
+                <FontAwesomeIcon
+                  icon={faEyeSlash}
+                  className="absolute right-2 top-9 cursor-pointer text-xl "
+                  onClick={handleClick}
+                />
+              ) : (
+                <FontAwesomeIcon
+                  icon={faEye}
+                  className=" absolute right-2 top-9 cursor-pointer text-xl"
+                  onClick={handleClick}
+                />
+              )}
+            </div>
+            <div className="mt-2">
+              <p className="text-btnColor text-center">
+                <Link to={"/forgot-password"}>Forgot Password?</Link>
+              </p>
+            </div>
+            <button
+              type="submit"
+              className="mt-4 bg-btnColor hover:bg-hoverbtnColor mx-2 text-white font-semibold py-2 px-4 rounded w-full"
+            >
+              Sign in
+            </button>
+          </form>
         </div>
         <p className="text-center text-sm mt-2">
           Create an account?{" "}

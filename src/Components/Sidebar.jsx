@@ -14,6 +14,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import LogoutIcon from "@mui/icons-material/Logout";
+import KeyIcon from "@mui/icons-material/Key";
 
 const drawerWidth = 240;
 
@@ -40,7 +41,7 @@ export default function PersistentDrawerRight(props) {
   };
 
   return (
-    <Box sx={{ display: "flex", color:"white" }}>
+    <Box sx={{ display: "flex", color: "white" }}>
       <Toolbar>
         <IconButton
           color="inherit"
@@ -78,6 +79,14 @@ export default function PersistentDrawerRight(props) {
         <Divider />
         <Divider />
         <List>
+          <ListItem disablePadding className="hover:bg-gray-700">
+            <ListItemButton onClick={props.onApiKey}>
+              <ListItemIcon>
+                <KeyIcon className="text-white" />
+              </ListItemIcon>
+              <ListItemText primary={"Change API Key"} />
+            </ListItemButton>
+          </ListItem>
           <ListItem disablePadding className="hover:bg-gray-700">
             <ListItemButton onClick={props.onLogout}>
               <ListItemIcon>

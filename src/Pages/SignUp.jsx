@@ -14,6 +14,7 @@ import { toast } from "react-toastify";
 import Spinner from "../Components/Spinner";
 import { useAuthStatus } from "../hooks/useAuthStatus";
 import Home from "./Home";
+import Modal from "../Components/Modal";
 
 const SignUp = () => {
   const { loggedin, checkingStatus } = useAuthStatus();
@@ -66,7 +67,7 @@ const SignUp = () => {
       delete formData.password;
       formData.timestamp = serverTimestamp();
       await setDoc(doc(db, "users", user.uid), formData);
-      navigate("/home");
+      navigate("/modal");
       setLoading(false);
       toast.success("Successfully Signed Up");
     } catch (error) {
@@ -79,8 +80,18 @@ const SignUp = () => {
     return <Spinner />;
   }
 
-  if (loggedin === true && checkingStatus === false) {
+  if (
+    loggedin === true &&
+    checkingStatus === false &&
+    localStorage.getItem("key") != null
+  ) {
     return <Home />;
+  } else if (
+    loggedin === true &&
+    checkingStatus === false &&
+    localStorage.getItem("key") == null
+  ) {
+    return <Modal />;
   }
 
   return (
