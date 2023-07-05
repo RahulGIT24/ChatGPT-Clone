@@ -8,6 +8,7 @@ import Input from "../Components/Input";
 import ChatContext from "../context/ChatContext";
 import Chat from "../Components/Chat";
 import Sidebar from "../Components/Sidebar";
+import Modal from "../Components/Modal";
 
 function Home() {
   const context = useContext(ChatContext);
@@ -19,7 +20,7 @@ function Home() {
   const auth = getAuth();
   const navigate = useNavigate();
   const [promptValue, setPromptValue] = useState("");
-  const { generateText, Loading } = context;
+  const { generateText } = context;
 
   const onLogout = () => {
     try {
@@ -34,26 +35,30 @@ function Home() {
     }
   };
 
+  const onApiKey = () => {
+    navigate("/modal");
+  };
+
   if (loading) {
     return <Spinner />;
   }
 
+  if (localStorage.getItem("key") == null) {
+    return <Modal />;
+  }
+
   return (
     <>
-      <Sidebar onLogout={onLogout} />
+      <Sidebar onLogout={onLogout} onApiKey={onApiKey} />
       <main className="flex justify-center items-center flex-col">
         <div className="flex text-white bg-chatblack justify-center items-center w-[100%]">
-            {renderChat === false ? (
-              <div className="right  flex items-center justify-center flex-col h-[100%]">
+          {renderChat === false ? (
+            <div className="right  flex items-center justify-center flex-col h-[100%]">
               <Default setPromptValue={setPromptValue} answer={answer} />
-              </div>
-            ) : (
-              <Chat
-                question={question}
-                answer={answer}
-                chatLoader={chatLoader}
-              />
-            )}
+            </div>
+          ) : (
+            <Chat question={question} answer={answer} chatLoader={chatLoader} />
+          )}
         </div>
         <Input
           setPromptValue={setPromptValue}
